@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>JetBrains License</title>
+    <!-- FontAwesome 图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f8ffae 0%, #43c6ac 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            background: rgba(255,255,255,0.97);
+            border-radius: 18px;
+            box-shadow: 0 8px 32px 0 rgba(31,38,135,0.18);
+            padding: 36px 32px 32px 32px;
+            max-width: 540px;
+            margin: 48px auto 0 auto;
+        }
+        h2 {
+            text-align: center;
+            color: #2d8cf0;
+            margin-bottom: 10px;
+            font-size: 2.2em;
+        }
+        .desc {
+            text-align: center;
+            color: #666;
+            margin-bottom: 18px;
+        }
+        .input-row {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+        .input-row input {
+            flex: 1;
+            padding: 10px 12px;
+            border: 1.5px solid #2d8cf0;
+            border-radius: 6px;
+            font-size: 1em;
+            outline: none;
+            transition: border 0.2s;
+            background: #f1f5f9;
+        }
+        .input-row input:focus {
+            border: 1.5px solid #43c6ac;
+            background: #fff;
+        }
+        .products {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 18px;
+        }
+        .product-btn {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            background: linear-gradient(90deg, #2d8cf0 60%, #43c6ac 100%);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 18px;
+            font-size: 1em;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(67,198,172,0.08);
+            transition: background 0.2s, transform 0.1s;
+        }
+        .product-btn:hover {
+            background: linear-gradient(90deg, #43c6ac 60%, #2d8cf0 100%);
+            transform: translateY(-2px) scale(1.04);
+        }
+        .reset-btn {
+            background: linear-gradient(90deg, #ff5858 60%, #f09819 100%);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 18px;
+            font-size: 1em;
+            cursor: pointer;
+            margin-bottom: 18px;
+            margin-left: 0;
+            box-shadow: 0 2px 8px rgba(255,88,88,0.08);
+            transition: background 0.2s, transform 0.1s;
+        }
+        .reset-btn:hover {
+            background: linear-gradient(90deg, #f09819 60%, #ff5858 100%);
+            transform: translateY(-2px) scale(1.04);
+        }
+        .result-area {
+            margin-top: 18px;
+            background: #f6f8fa;
+            border-radius: 8px;
+            padding: 14px 12px;
+            min-height: 60px;
+            font-size: 1em;
+            color: #333;
+            box-shadow: 0 1px 4px rgba(67,198,172,0.06);
+        }
+        .result-area pre {
+            white-space: pre-wrap;
+            word-break: break-all;
+            max-height: 320px;
+            overflow: auto;
+            background: #e3f2fd;
+            border-radius: 6px;
+            padding: 10px;
+            margin: 8px 0 0 0;
+            font-size: 0.98em;
+            color: #1a237e;
+        }
+        .fa-solid, .fa-brands {
+            font-size: 18px;
+        }
+        .center-toast {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(60, 60, 60, 0.85);
+            color: #fff;
+            padding: 18px 36px;
+            border-radius: 12px;
+            font-size: 1.2em;
+            z-index: 9999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+        .center-toast.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        @media (max-width: 600px) {
+            .container { padding: 18px 4vw; }
+            .products { flex-direction: column; gap: 8px; }
+            .product-btn, .reset-btn { width: 100%; }
+            .input-row { flex-direction: column; gap: 8px; }
+            .center-toast { font-size: 1em; padding: 12px 18px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2><i class="fa-brands fa-jetbrains"></i> JetBrains License</h2>
+    <div class="desc">请输入 <b>licenseeName</b> 和 <b>assigneeName</b>，然后点击产品获取激活码</div>
+    <div class="input-row">
+        <input type="text" id="licenseeName" placeholder="licenseeName">
+        <input type="text" id="assigneeName" placeholder="assigneeName">
+    </div>
+    <div class="products">
+        <button class="product-btn" onclick="generateLicense('II')"><i class="fa-solid fa-lightbulb"></i> IntelliJ IDEA</button>
+        <button class="product-btn" onclick="generateLicense('CL')"><i class="fa-solid fa-cogs"></i> CLion</button>
+        <button class="product-btn" onclick="generateLicense('GO')"><i class="fa-brands fa-golang"></i> GoLand</button>
+        <button class="product-btn" onclick="generateLicense('RR')"><i class="fa-solid fa-bug"></i> RustRover</button>
+        <button class="product-btn" onclick="generateLicense('WS')"><i class="fa-solid fa-code"></i> WebStorm</button>
+        <button class="product-btn" onclick="generateLicense('PS')"><i class="fa-solid fa-tooth"></i> PhpStorm</button>
+        <button class="product-btn" onclick="generateLicense('PC')"><i class="fa-brands fa-python"></i> PyCharm</button>
+        <button class="product-btn" onclick="generateLicense('PRAINBOWBRACKET')"><i class="fa-solid fa-brush"></i> Rainbow Brackets</button>
+    </div>
+    <button class="reset-btn" onclick="resetCert()"><i class="fa-solid fa-rotate"></i> 重置证书</button>
+    <div id="result" class="result-area"></div>
+</div>
+<div id="centerToast" class="center-toast"></div>
+<script>
+    // 8个产品的模板
+    const licenseTemplates = {
+        "II": {
+            "products": [
+                {"code":"II","fallbackDate":"2030-12-31","paidUpTo":"2030-12-31"},
+                {"code":"PSI","fallbackDate":"2030-12-31","paidUpTo":"2030-12-31"},
+                {"code":"PCWMP","fallbackDate":"2030-12-31","paidUpTo":"2030-12-31"}
+            ]
+        },
+        "CL": {
+            "products": [
+                {"code":"CL","fallbackDate":"2030-12-31","paidUpTo":"2030-12-31"},
+                {"code":"PSI","fallbackDate":"2030-12-31","paidUpTo":"2030-12-31"},
+                {"code":"PCWMP","fallbackDate":"2030-12-31","paidUpTo":"2030-12-31"}
+            ]
+        },
+        "GO": {
+            "products": [
+                {"code":"GO","fallbackDate":"2030-12-31","paidUpTo":"2030-12-31"},
+                {"code":"PSI","fallbackDate":"2030-12-31","paidUpTo":"2030-12-31"},
+                {"code":"PCWMP","fallbackDate":"2030-12-31","paidUpTo":"2030-12-31"}
+            ]
+        },
+        "RR": {
+            "products": [
+                {"code":"RR","fallbackDate":"2030-12-31","paidUpTo":"2030-12-31"},
+                {"code":"PSI","fallbackDate":"2030-12-31","paidUpTo":"2030-12-31"},
+                {"code":"PCWMP","fallbackDate":"2030-12-31","paidUpTo":"2030-12-31"}
+            ]
+        },
+        "WS": {
+            "products": [
+                {"code":"WS","fallbackDate":"2030-12-31","paidUpTo":"2030-12-31"},
+                {"code":"PSI","fallbackDate":"2030-12-31","paidUpTo":"2030-12-31"},
+                {"code":"PCWMP","fallbackDate":"2030-12-31","paidUpTo":"2030-12-31"}
+            ]
+        },
+        "PS": {
+            "products": [
+                {"code":"PS","fallbackDate":"2030-12-31","paidUpTo":"2030-12-31"},
+                {"code":"PSI","fallbackDate":"2030-12-31","paidUpTo":"2030-12-31"},
+                {"code":"PCWMP","fallbackDate":"2030-12-31","paidUpTo":"2030-12-31"}
+            ]
+        },
+        "PC": {
+            "products": [
+                {"code":"PC","fallbackDate":"2030-12-31","paidUpTo":"2030-12-31"},
+                {"code":"PSI","fallbackDate":"2030-12-31","paidUpTo":"2030-12-31"},
+                {"code":"PCWMP","fallbackDate":"2030-12-31","paidUpTo":"2030-12-31"}
+            ]
+        },
+        "PRAINBOWBRACKET": {
+            "products": [
+                {"code":"PRAINBOWBRACKET","fallbackDate":"2030-12-31","paidUpTo":"2030-12-31"}
+            ]
+        }
+    };
+
+    function showCenterToast(msg) {
+        const toast = document.getElementById('centerToast');
+        toast.innerText = msg;
+        toast.classList.add('show');
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 2000);
+    }
+
+    function copyToClipboard(text) {
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(text).then(function() {
+                showCenterToast('已复制到剪贴板！');
+            }, function() {
+                fallbackCopyTextToClipboard(text);
+            });
+        } else {
+            fallbackCopyTextToClipboard(text);
+        }
+    }
+    function fallbackCopyTextToClipboard(text) {
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        try {
+            document.execCommand('copy');
+            showCenterToast('已复制到剪贴板！');
+        } catch (err) {
+            showCenterToast('复制失败，请手动复制');
+        }
+        document.body.removeChild(textArea);
+    }
+
+    function generateLicense(productKey) {
+        const licenseeName = document.getElementById('licenseeName').value.trim();
+        const assigneeName = document.getElementById('assigneeName').value.trim();
+        if (!licenseeName || !assigneeName) {
+            document.getElementById('result').innerText = '请填写licenseeName和assigneeName！';
+            return;
+        }
+        // 构造请求体
+        const base = {
+            "licenseeName": licenseeName,
+            "assigneeName": assigneeName,
+            "assigneeEmail": "",
+            "licenseRestriction": "",
+            "checkConcurrentUse": false,
+            "metadata": "0120230102PPAA013009",
+            "hash": "41472961/0:1563609451",
+            "gracePeriodDays": 7,
+            "autoProlongated": true,
+            "isAutoProlongated": true
+        };
+        base.products = licenseTemplates[productKey].products;
+
+        fetch('/api/generate', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(base)
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.license) {
+                    document.getElementById('result').innerHTML = '<b>生成的License：</b><pre id="licensePre">' + data.license + '</pre>';
+                    copyToClipboard(data.license);
+                } else {
+                    document.getElementById('result').innerText = '生成失败：' + JSON.stringify(data);
+                }
+            })
+            .catch(err => {
+                document.getElementById('result').innerText = '请求出错：' + err;
+            });
+    }
+
+    function resetCert() {
+        document.getElementById('result').innerText = '正在重置证书，请稍候...';
+        fetch('/api/reset')
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('result').innerText = '证书重置成功！';
+                } else {
+                    document.getElementById('result').innerText = '重置失败：' + (data.error || JSON.stringify(data));
+                }
+            })
+            .catch(err => {
+                document.getElementById('result').innerText = '请求出错：' + err;
+            });
+    }
+</script>
+</body>
+</html>

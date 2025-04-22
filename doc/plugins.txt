@@ -1,0 +1,1 @@
+https://plugins.jetbrains.com/api/searchPlugins?max=10000&offset=0&orderBy=name
